@@ -1,41 +1,41 @@
 exports = typeof window !== "undefined" && window !== null ? window : global;
 
 exports.Game = function () {
-    var players = new Array();
+    var players = [];
     var places = new Array(6);
     var purses = new Array(6);
     var inPenaltyBox = new Array(6);
 
-    var popQuestions = new Array();
-    var scienceQuestions = new Array();
-    var sportsQuestions = new Array();
-    var rockQuestions = new Array();
+    var popQuestions = [];
+    var scienceQuestions = [];
+    var sportsQuestions = [];
+    var rockQuestions = [];
 
     var currentPlayer = 0;
     var isGettingOutOfPenaltyBox = false;
 
     var didPlayerWin = function () {
-        return !(purses[currentPlayer] == 6)
+        return !(purses[currentPlayer] === 6)
     };
 
     var currentCategory = function () {
-        if (places[currentPlayer] == 0)
+        if (places[currentPlayer] === 0)
             return 'Pop';
-        if (places[currentPlayer] == 4)
+        if (places[currentPlayer] === 4)
             return 'Pop';
-        if (places[currentPlayer] == 8)
+        if (places[currentPlayer] === 8)
             return 'Pop';
-        if (places[currentPlayer] == 1)
+        if (places[currentPlayer] === 1)
             return 'Science';
-        if (places[currentPlayer] == 5)
+        if (places[currentPlayer] === 5)
             return 'Science';
-        if (places[currentPlayer] == 9)
+        if (places[currentPlayer] === 9)
             return 'Science';
-        if (places[currentPlayer] == 2)
+        if (places[currentPlayer] === 2)
             return 'Sports';
-        if (places[currentPlayer] == 6)
+        if (places[currentPlayer] === 6)
             return 'Sports';
-        if (places[currentPlayer] == 10)
+        if (places[currentPlayer] === 10)
             return 'Sports';
         return 'Rock';
     };
@@ -50,7 +50,6 @@ exports.Game = function () {
         sportsQuestions.push("Sports Question " + i);
         rockQuestions.push(this.createRockQuestion(i));
     }
-    ;
 
     this.isPlayable = function (howManyPlayers) {
         return howManyPlayers >= 2;
@@ -74,13 +73,13 @@ exports.Game = function () {
 
 
     var askQuestion = function () {
-        if (currentCategory() == 'Pop')
+        if (currentCategory() === 'Pop')
             console.log(popQuestions.shift());
-        if (currentCategory() == 'Science')
+        if (currentCategory() === 'Science')
             console.log(scienceQuestions.shift());
-        if (currentCategory() == 'Sports')
+        if (currentCategory() === 'Sports')
             console.log(sportsQuestions.shift());
-        if (currentCategory() == 'Rock')
+        if (currentCategory() === 'Rock')
             console.log(rockQuestions.shift());
     };
 
@@ -89,7 +88,7 @@ exports.Game = function () {
         console.log("They have rolled a " + roll);
 
         if (inPenaltyBox[currentPlayer]) {
-            if (roll % 2 != 0) {
+            if (roll % 2 !== 0) {
                 isGettingOutOfPenaltyBox = true;
 
                 console.log(players[currentPlayer] + " is getting out of the penalty box");
@@ -128,13 +127,13 @@ exports.Game = function () {
 
                 var winner = didPlayerWin();
                 currentPlayer += 1;
-                if (currentPlayer == players.length)
+                if (currentPlayer === players.length)
                     currentPlayer = 0;
 
                 return winner;
             } else {
                 currentPlayer += 1;
-                if (currentPlayer == players.length)
+                if (currentPlayer === players.length)
                     currentPlayer = 0;
                 return true;
             }
@@ -151,8 +150,9 @@ exports.Game = function () {
             var winner = didPlayerWin();
 
             currentPlayer += 1;
-            if (currentPlayer == players.length)
-                currentPlayer = 0;
+            if (currentPlayer === players.length) {
+              currentPlayer = 0;
+            }
 
             return winner;
         }
@@ -164,8 +164,9 @@ exports.Game = function () {
         inPenaltyBox[currentPlayer] = true;
 
         currentPlayer += 1;
-        if (currentPlayer == players.length)
-            currentPlayer = 0;
+        if (currentPlayer === players.length) {
+          currentPlayer = 0;
+        }
         return true;
     };
 };
@@ -179,10 +180,9 @@ game.add('Pat');
 game.add('Sue');
 
 do {
-
     game.roll(Math.floor(Math.random() * 6) + 1);
 
-    if (Math.floor(Math.random() * 10) == 7) {
+    if (Math.floor(Math.random() * 10) === 7) {
         notAWinner = game.wrongAnswer();
     } else {
         notAWinner = game.wasCorrectlyAnswered();
