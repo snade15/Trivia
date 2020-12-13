@@ -170,4 +170,9 @@ game.addPlayer('Chet');
 game.addPlayer('Pat');
 game.addPlayer('Sue');
 
-game.run();
+if (game.isPlayable()) {
+    game.run();
+} else {
+    console.log('Not enough players yet. Need minimal two players to start.')
+}
+
