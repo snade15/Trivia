@@ -2,23 +2,23 @@ exports = typeof window !== "undefined" && window !== null ? window : global;
 
 exports.Game = function () {
     const players = [];
-  const places = [];
-  const purses = [];
-  const inPenaltyBox = [];
+    const places = [];
+    const purses = [];
+    const inPenaltyBox = [];
 
-  const popQuestions = [];
-  const scienceQuestions = [];
-  const sportsQuestions = [];
-  const rockQuestions = [];
+    const popQuestions = [];
+    const scienceQuestions = [];
+    const sportsQuestions = [];
+    const rockQuestions = [];
 
-  let currentPlayer = 0;
-  let isGettingOutOfPenaltyBox = false;
+    let currentPlayer = 0;
+    let isGettingOutOfPenaltyBox = false;
 
-  const didPlayerWin = function () {
+    const didPlayerWin = function () {
         return !(purses[currentPlayer] === 6)
     };
 
-  const currentCategory = function () {
+    const currentCategory = function () {
         if (places[currentPlayer] === 0)
             return 'Pop';
         if (places[currentPlayer] === 4)
@@ -72,7 +72,7 @@ exports.Game = function () {
     };
 
 
-  const askQuestion = function () {
+    const askQuestion = function () {
         if (currentCategory() === 'Pop')
             console.log(popQuestions.shift());
         if (currentCategory() === 'Science')
@@ -149,7 +149,7 @@ exports.Game = function () {
 
             currentPlayer += 1;
             if (currentPlayer === players.length) {
-              currentPlayer = 0;
+                currentPlayer = 0;
             }
 
             return winner;
@@ -163,7 +163,7 @@ exports.Game = function () {
 
         currentPlayer += 1;
         if (currentPlayer === players.length) {
-          currentPlayer = 0;
+            currentPlayer = 0;
         }
         return true;
     };
