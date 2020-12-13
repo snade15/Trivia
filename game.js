@@ -2,9 +2,9 @@ exports = typeof window !== "undefined" && window !== null ? window : global;
 
 exports.Game = function () {
     var players = [];
-    var places = new Array(6);
-    var purses = new Array(6);
-    var inPenaltyBox = new Array(6);
+    var places = [];
+    var purses = [];
+    var inPenaltyBox = [];
 
     var popQuestions = [];
     var scienceQuestions = [];
