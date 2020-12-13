@@ -82,7 +82,7 @@ class Game {
         } else if (this.currentCategory === 'Rock') {
             console.log(this.rockQuestions.shift());
         }
-    };
+    }
 
     nextQuestion(roll) {
         this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
@@ -111,7 +111,7 @@ class Game {
         } else {
             this.nextQuestion(roll);
         }
-    };
+    }
 
     nextPlayer() {
         this.currentPlayer += 1;
@@ -143,7 +143,7 @@ class Game {
 
             return winner;
         }
-    };
+    }
 
     wrongAnswer() {
         console.log('Question was incorrectly answered');
