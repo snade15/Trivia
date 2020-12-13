@@ -22,16 +22,19 @@ class Game {
     }
 
     // Getters
-    get howManyPlayers(){
+    get howManyPlayers() {
         return this.players.length;
     }
+
     get didPlayerWin() {
         return this.purses[this.currentPlayer] !== 6;
     }
+
     get isPlayable() {
         return this.howManyPlayers >= 2;
     }
-    get currentCategory(){
+
+    get currentCategory() {
         if ([0, 4, 8].includes(this.places[this.currentPlayer])) {
             return 'Pop';
         }
@@ -151,8 +154,6 @@ class Game {
         return true;
     };
 }
-
-let notAWinner = false;
 
 const game = new Game();
 
